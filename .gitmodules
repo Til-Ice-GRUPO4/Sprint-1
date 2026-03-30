@@ -1,3 +1,0 @@
-[submodule "banco-de-dados"]
-	path = banco-de-dados
-	url = https://github.com/TIL-ICE/banco-de-dados.git
