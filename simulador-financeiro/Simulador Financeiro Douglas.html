@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simulador Financeiro</title>
+  </head>
+
+  <body>
+    <h1>Calcule sua economia com nosso sistema</h1>
+    <br />
+    <label for="id_peso"
+      >Insira a quantidade de tilápias exportadas, em toneladas:</label
+    >
+    <input type="text" id="id_peso" placeholder="Toneladas" />
+    <br />
+    <label for="id_valor"
+      >Insira o valor do kg negociado da tilápia, em reais:</label
+    >
+    <input type="text" id="id_valor" placeholder="R$" />
+    <br />
+    <button onclick="simular()">Simular</button>
+    <div id="mensagem"></div>
+  </body>
+</html>
+<script>
+  function simular() {
+    mensagem.innerHTML = "";
+
+    let perda = 0.09;
+    let min_reducao = 0.15;
+    let max_reducao = 0.23;
+    let peso = Number(id_peso.value);
+    let valor = Number(id_valor.value);
+
+    let peso_em_kg = peso * 1000;
+    let valor_total = peso_em_kg * valor;
+
+    let prejuizo_total = valor_total * perda;
+    let reducao_minima = prejuizo_total * min_reducao;
+    let reducao_maxima = prejuizo_total * max_reducao;
+
+    mensagem.innerHTML += `Perda média do peso da tilápia: ${perda * 100}% <br> Peso da carga de tilápia, em kg: ${peso_em_kg}kg <br> Valor do kg de tilápia: R$${valor} <br>
+    Valor de vendas: R$${valor_total.toFixed(0)} <br> Perda de kg: ${peso_em_kg * perda}kg <br> Prejuízo: R$${prejuizo_total.toFixed(0)} <br> 
+    Expectativa de redução de perdas: Mínimo ${min_reducao * 100}% / Máximo: ${max_reducao * 100}% <br> Redução mínima de perdas: R$${reducao_minima.toFixed(0)} 
+    <br> Redução máxima de perdas: R$${reducao_maxima.toFixed(0)}`;
+  }
+</script>

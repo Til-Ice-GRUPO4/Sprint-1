@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador Financeiro</title>
+</head>
+
+<body>
+    <h1>Simulador Financeiro da TIL-ICE</h1>
+    <p>Quantas toneladas de tilápia são exportadas por semestre?</p>
+    <input type="text" id="ipt_qtdTilapiaTon" placeholder="Ex: 50">
+
+    <p>Qual o preço aproximado do quilo da Tilapia?</p>
+    <input type="text" id="ipt_precoKgTilapia" placeholder="Ex: 5.74"><br><br>
+
+    <button onclick="simular()">Simular</button>
+    <div id="mensagemPrejuizo"></div>
+    <div id="mensagemEconomia"></div>
+</body>
+
+<script>
+    function simular() {
+        let qtdTilapiaTon = Number(ipt_qtdTilapiaTon.value);
+        let precoKgTilapia = Number(ipt_precoKgTilapia.value);
+
+        qtdTilapiaKg = (qtdTilapiaTon * 1000);
+        precoAproxTotal = (qtdTilapiaKg * precoKgTilapia);
+
+        valorTotalPrejuizo = (precoAproxTotal * 0.09);
+        valorMinimoEconomia = (valorTotalPrejuizo * 0.15);
+        valorMaximoEconomia = (valorTotalPrejuizo * 0.23);
+
+        mensagemPrejuizo.innerHTML = `O valor do prejuízo total é de <span style = "color: red">$ ${valorTotalPrejuizo.toFixed(2)} USD</span>`
+        mensagemEconomia.innerHTML = `O valor da economia aproximada será de <span style = "color: green">$ ${valorMinimoEconomia.toFixed(2)} USD</span> 
+        até <span style = "color: green">$ ${valorMaximoEconomia.toFixed(2)} USD</span>`
+    }
+</script>
+
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Simulador Financeiro Semanal</title>
+</head>
+
+<body>
+
+    <h1>Qual seria sua economia com perdas? (Semanal)</h1>
+    <br>
+
+    <label>
+        <b>Quantas toneladas de tilápia exportada durante o ano:
+            <input type="text" id="id_pesototal" placeholder="Digite aqui"> (Em toneladas)
+        </b>
+    </label>
+
+    <br><br>
+
+    <label>
+        <b>Insira o preço médio da tilápia em Kg:
+            $<input type="text" id="id_precomedio_kg" placeholder="Digite aqui"> (Em dólares)
+        </b>
+    </label>
+
+    <br><br>
+
+    <button onclick="calcular_simulacao()">
+        <h3>Simular Economia Semanal</h3>
+    </button>
+
+    <br><br>
+
+    <p id="prejuizo"></p>
+    <p id="economia"></p>
+
+    <script>
+
+        function calcular_simulacao() {
+
+            let pesototal = Number(id_pesototal.value);
+            let preco_mediokg = Number(id_precomedio_kg.value);
+
+            let pesototal_kg = pesototal * 1000;
+            let preco_mediototal = pesototal_kg * preco_mediokg;
+
+
+            let prejuizo_anual = preco_mediototal * 0.09;
+
+            // Convertendo para semanal (divide por 52 semanas)
+            let valor_prejuizo_semanal = prejuizo_anual / 52;
+
+            let minimo_economia = valor_prejuizo_semanal * 0.15;
+            let maximo_economia = valor_prejuizo_semanal * 0.23;
+
+            prejuizo.innerHTML =`Prejuízo anual: <span style="color:red">$ ${prejuizo_anual.toFixed(2)}</span><br>
+            semanal: <span style="color:red">$ ${valor_prejuizo_semanal.toFixed(2)}</span>`;
+
+            
+            economia.innerHTML =`A economia semanal será de <span style="color:green">$ ${minimo_economia.toFixed(2)} dólares</span>
+                 até <span style="color:green">$ ${maximo_economia.toFixed(2)} dólares</span>`;
+
+        }
+
+    </script>
+
+</body>
+
+</html>

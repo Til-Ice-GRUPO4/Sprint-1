@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Financeira Individual</title>
+</head>
+<body>
+    <h3> Calculadora Financeira Individual </h3>
+
+    <label>Insira o valor do preço da tilapia em kg:</label>
+    <input type="text" id="ipt_precokg">
+    <br><br>
+
+    <label>Insira o volume exporta em kg:</label>
+    <input type="text" id="ipt_quantidade">
+    <br><br>
+
+    <button onclick="calcular()">Calcular</button>
+
+    <div id="mensagem"></div>
+
+</body>
+<script>
+    function calcular(){
+
+        let precokg = Number(ipt_precokg.value);
+        let quantidade = Number(ipt_quantidade.value);
+
+        let total = precokg * quantidade;
+        let prejuizo = total * 0.09;
+
+        let lucroMin = prejuizo * 0.15;
+        let lucroMax = prejuizo * 0.23;
+
+        let prejuizoAnual = prejuizo * 12;
+        let lucroMinAnual = lucroMin * 12;
+        let lucroMaxAnual = lucroMax * 12;
+
+        mensagem.innerHTML = `<b><br>Mensal</b> <br><br>
+
+                            <span style ='color:red'> Prejuizo (mensal) $ ${prejuizo.toFixed(2)}</span><br>
+                            <span style ='color:green'> Lucro mínimo mensal: $ ${lucroMin.toFixed(2)}</span><br>
+                            <span style ='color:green'> Lucro máximo mensal: $ ${lucroMax.toFixed(2)}</span><br><br>
+                                
+                            <b> Anual </b> <br><br>
+                            <span style = 'color:red'> Prejuizo (anual) $ ${prejuizoAnual.toFixed(2)}</span><br>
+                            <span style = 'color:green'> Lucro mínimo mensal: $ ${lucroMinAnual.toFixed(2)}</span><br>
+                            <span style = 'color:green'> Lucro máximo anual: $ ${lucroMaxAnual.toFixed(2)}`;
+    }
+</script>
+</html>

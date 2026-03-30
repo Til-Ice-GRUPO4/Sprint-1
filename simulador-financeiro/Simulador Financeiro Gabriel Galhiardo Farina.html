@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador Financeiro</title>
+</head>
+
+<body style="background-color: rgb(139, 142, 145);">
+
+    <h1>Quanto você pode <span style="color: rgb(0, 255, 0);">economizar</span>, faça a simulação!!!</h1>
+    <br>
+    <label for="id_peso_total"><b>Insira quantas toneladas de tilápia você exporta por ano: <input type="text"
+                id="id_peso_total" placeholder="Digite aqui"> Ton</b></label>
+    <br>
+    <br>
+    <label for="id_preco_medio_kg"><b>Insira o preço médio do Kg de tilápia: <input type="text" id="id_preco_medio_kg"
+                placeholder="Digite aqui"> USD</b></label>
+    <br>
+    <br>
+
+    <button onclick="calcular_simulacao()">
+        <h3>Simular Economia</h3>
+    </button>
+    <br>
+
+    <p id="msg_economia"></p>
+
+</body>
+
+<script>
+
+    function calcular_simulacao() {
+        let peso_total = Number(id_peso_total.value);
+        let preco_medio_kg = Number(id_preco_medio_kg.value);
+
+        peso_total_kg = (peso_total * 1000);
+        preco_medio_total = (peso_total_kg * preco_medio_kg);
+
+        valor_total_prejuizo = (preco_medio_total * 0.09);
+        valor_minimo_economia = (valor_total_prejuizo * 0.15);
+        valor_maximo_economia = (valor_total_prejuizo * 0.23);
+
+        msg_economia.innerHTML = `<h3>A economia média será de <span style = "color: rgb(0, 255, 0)">$ ${valor_minimo_economia} USD</span> 
+    até <span style = "color: rgb(0, 255, 0)"> ${valor_maximo_economia} USD</span> em um ano usando o sistema.<br>
+    Evitanto uma perda de  <span style = "color: rgb(0, 255, 0)">${(peso_total_kg * 0.09) * 0.15}</span> a <span style = "color: rgb(0, 255, 0)">${(peso_total_kg * 0.09) * 0.23}</span> Kg</h3>`
+    }
+
+</script>
+
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador Financeiro</title>
+</head>
+
+<body style="background-color: #0D2333;">
+    <div id="content">
+        <h1 style="color: white;">SIMULADOR FINANCEIRO</h1>
+        <br>
+
+        <label style=" color: white;">QUER VER O QUANTO PODEMOS AGREGAR A SUA EMPRESA?</label>
+        <br><br>
+
+        <label style=" color: white;" for="ipt_peso_toneladas">DIGITE QUANTAS TONELADAS SUA EMPRESA EXPORTA
+            ANUALMENTE:<br>
+            <input type="text" id="ipt_peso_toneladas" placeholder="Digite em toneladas"></label><br>
+        <br>
+
+        <label style=" color: white;" for="ipt_preco_kg">DIGITE O PREÇO MÉDIO DO KILO EM DOLÁR DA TILÁPIA:<br>
+            <input type="text" id="ipt_preco_kg" placeholder="Digite o valor em dólar"></label><br>
+        <br>
+
+        <button onclick="simulacao_anual()" style="background-color:#1AB8C4; color : white; ">
+            <h5>FAZER SIMULAÇÃO ANUAL</h5>
+        </button>
+
+        <br><br>
+
+        <div id="mensagem_simulador"></div>
+
+    </div>
+</body>
+
+<script>
+    function simulacao_anual() {
+
+        let total_toneladas = Number(ipt_peso_toneladas.value);
+        let preco_kg = Number(ipt_preco_kg.value);
+
+        let custo_projeto = 100000;
+
+        let perdas = total_toneladas * 0.09;
+        let perdas_valor = (perdas * 1000) * preco_kg;
+
+        let reducao_perda_valor_minimo = perdas_valor * 0.15;
+        let reducao_perda_valor_maximo = perdas_valor * 0.23;
+
+        let retorno_valor_tempo = custo_projeto / reducao_perda_valor_minimo
+
+        if (total_toneladas <= 0 || preco_kg <= 0) {
+            mensagem_simulador.innerHTML = '<span style="color: white;">APENAS VALORES POSITIVOS OU MAIOR QUE 0 SERAM ACEITOS !!</span> ';
+        }
+        else {
+
+            mensagem_simulador.innerHTML = `<span style="color: white;"> SEGUNDO O RELATÓRIO DO THE STATE OF WORLD FISHERIES AND AQUACULTURE, CERCA DE 9% DE TODO PESO É PERDIDO PELO PROCESSO DE GOTEJAMENTO.<br><br>
+    COM BASE NOS VALORES PASSADOS ACIMA SUA EMPRESA ESTÁ PERDENDO ANUALMENTE <span style="color: red;">$${perdas_valor.toFixed(2)}</span> DE DOLÁRES. E PERDEU <span style="color: red;">${perdas} TONELADAS </span> DURANTE OS TRANSPORTES.<br><br>
+    NOSSO PROJETO VISA DIMUNUIR ENTRE <span style="color: limegreen;">$${reducao_perda_valor_minimo.toFixed(2)}</span> A <span style="color: limegreen;">$${reducao_perda_valor_maximo.toFixed(2)}</span> DOLÁRES DE PERDA.
+    O NOSSO PROJETO PODE SE PAGAR EM ATÉ <b>${retorno_valor_tempo.toFixed(1)} ANOS.</b> </span>`
+
+        }
+
+    }
+</script>
+</html>
